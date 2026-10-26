@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080c14">
+  <title>Jarvis AGV</title>
+  <link rel="icon" type="image/png" href="/assets/agv-logo.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Jarvis AGV, início"><img class="brand-logo" src="/assets/agv-logo.png" alt="" width="60" height="40"><span>AGV<span class="brand-caption">ASSISTENTE ESCOLAR</span></span></a>
+      <div class="topbar-actions">
+        <div class="system-state" role="status"><span id="system-dot" class="state-dot"></span><span id="system-label">Conectando</span></div>
+        <button id="open-settings" class="settings-button" type="button" aria-haspopup="dialog" aria-controls="settings-dialog" aria-label="Abrir configurações">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg><span>Configurações</span>
+        </button>
+      </div>
+    </header>
+    <section class="intro" aria-labelledby="jarvis-title">
+      <div class="emblem" aria-hidden="true"><img src="/assets/agv-logo.png" alt="" width="1536" height="1024" decoding="async"></div>
+      <p class="eyebrow">SEU ESPAÇO PARA APRENDER</p>
+      <h1 id="jarvis-title">JARVIS <span>AGV</span></h1>
+      <p class="intro-copy">Pergunte sobre suas aulas ou seus estudos.</p>
+    </section>
+    <div class="workspace">
+    <section class="chat-card" aria-label="Conversa com Jarvis">
+      <div class="card-head">
+        <div class="conversation-title"><span class="small-orb" aria-hidden="true"></span><h2>Conversa</h2><span id="conversation-state">Pode perguntar</span></div>
+        <button id="clear-chat" class="text-button" type="button" title="Limpar esta conversa">Nova conversa <span aria-hidden="true">+</span></button>
+      </div>
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions text" tabindex="0" aria-label="Mensagens">
+        <div class="message bot"><div class="avatar" aria-hidden="true"><img src="/assets/agv-logo.png" alt="" width="30" height="20"></div><div class="bubble"><span>Olá! Eu sou o Jarvis AGV. Posso ajudar nos estudos e consultar as aulas da escola. O que você quer saber?</span><small class="message-time">JARVIS AGV</small></div></div>
+      </div>
+      <div class="quick-actions" aria-label="Sugestões de perguntas">
+        <button type="button" class="quick" data-question="Quais são as aulas de hoje?"><span aria-hidden="true">01</span>Aulas de hoje<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg></button>
+        <button type="button" class="quick" data-question="Que horas são?"><span aria-hidden="true">02</span>Que horas são?<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8"/></svg></button>
+      </div>
+      <div class="composer-wrap">
+        <form id="chat-form" class="composer">
+          <button id="mic" class="icon-button" type="button" title="Falar no microfone" aria-label="Falar no microfone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11v1a6 6 0 0 0 12 0v-1M12 18v3M9 21h6"/></svg></button>
+          <input id="message" placeholder="Pergunte ao Jarvis..." aria-label="Mensagem" required maxlength="2000" autocomplete="off">
+          <button class="send-button" type="submit" aria-label="Enviar mensagem"><span>Enviar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m7 17 10-10M7 7h10v10"/></svg></button>
+        </form>
+        <div class="composer-meta"><span id="voice-status" role="status">Voz pronta.</span><span class="enter-hint"><kbd>Enter</kbd> para enviar</span></div>
+      </div>
+    </section>
+    <aside class="face-panel" aria-label="Rosto da IA">
+      <svg class="face" viewBox="0 0 200 200" role="img" aria-label="Rosto do Jarvis">
+        <defs>
+          <radialGradient id="face-glow" cx="50%" cy="42%" r="62%"><stop class="glow-in" offset="0"/><stop class="glow-mid" offset=".6"/><stop class="glow-out" offset="1"/></radialGradient>
+          <clipPath id="face-disc"><circle cx="100" cy="100" r="68"/></clipPath>
+          <pattern id="holo-lines" width="5" height="5" patternUnits="userSpaceOnUse"><rect class="holo-line" x="0" y="0" width="5" height="0.7"/></pattern>
+          <linearGradient id="holo-sweep-grad" x1="0" y1="0" x2="0" y2="1"><stop class="sweep-edge" offset="0"/><stop class="sweep-core" offset=".5"/><stop class="sweep-edge" offset="1"/></linearGradient>
+        </defs>
+        <circle class="face-halo" cx="100" cy="100" r="70"/>
+        <circle class="face-inner" cx="100" cy="100" r="68" fill="url(#face-glow)"/>
+        <g clip-path="url(#face-disc)">
+          <rect class="holo-grid" x="30" y="30" width="140" height="140" fill="url(#holo-lines)"/>
+          <rect class="holo-sweep" x="30" y="-44" width="140" height="44" fill="url(#holo-sweep-grad)"/>
+        </g>
+        <circle class="face-orbit" cx="100" cy="100" r="80"/>
+        <circle class="face-ring" cx="100" cy="100" r="92"/>
+        <path class="face-ticks" d="M2 100h14M184 100h14M100 2v14M100 184v14"/>
+        <g class="features">
+          <g class="eye eye-left"><rect class="eye-lens" x="63" y="81" width="26" height="14" rx="7"/><circle class="eye-core" cx="76" cy="88" r="3.4"/></g>
+          <g class="eye eye-right"><rect class="eye-lens" x="111" y="81" width="26" height="14" rx="7"/><circle class="eye-core" cx="124" cy="88" r="3.4"/></g>
+          <g class="mouth" aria-hidden="true">
+            <rect class="bar b0" x="67.5" y="124" width="5" height="18" rx="2.5"/>
+            <rect class="bar b1" x="77.5" y="124" width="5" height="18" rx="2.5"/>
+            <rect class="bar b2" x="87.5" y="124" width="5" height="18" rx="2.5"/>
+            <rect class="bar b3" x="97.5" y="124" width="5" height="18" rx="2.5"/>
+            <rect class="bar b4" x="107.5" y="124" width="5" height="18" rx="2.5"/>
+            <rect class="bar b5" x="117.5" y="124" width="5" height="18" rx="2.5"/>
+            <rect class="bar b6" x="127.5" y="124" width="5" height="18" rx="2.5"/>
+          </g>
+        </g>
+      </svg>
+      <h2 class="face-title">ROSTO DA IA</h2>
+      <p class="face-state"><span>Modo Interativo</span><span class="fs-listening"> • Ouvindo</span><span class="fs-thinking"> • Pensando</span><span class="fs-speaking"> • Falando</span></p>
+    </aside>
+    </div>
+    <section class="voice-panel" aria-labelledby="voice-panel-title">
+      <h2 id="voice-panel-title" class="voice-panel-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg>FUNCIONALIDADES &amp; CONFIGURAÇÕES DE VOZ</h2>
+      <div class="voice-panel-fields">
+        <div class="form-field"><label for="voice">VOZ DA IA</label><select id="voice"><option value="jarvis-pt">Jarvis — voz masculina (Brasil)</option></select></div>
+        <div class="form-field"><label for="language">IDIOMA PRINCIPAL</label><select id="language"><option value="pt-BR">Português (Brasil)</option><option value="en-US">English (United States)</option></select></div>
+        <div class="form-field"><label for="rate">VELOCIDADE DA FALA <output id="rate-value" for="rate">115%</output></label><input id="rate" type="range" min="85" max="150" value="115" step="5"></div>
+      </div>
+    </section>
+    <footer><span>JARVIS AGV</span><span>Português e inglês</span></footer>
+  </main>
+  <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-title">
+    <div class="settings-head"><h2 id="settings-title">Configurações</h2><button id="close-settings" class="icon-button" type="button" aria-label="Fechar configurações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="settings-body">
+      <div class="voice-switch"><div><strong>Falar respostas</strong><small>Ouça enquanto o Jarvis responde</small></div><button id="voice-toggle" class="toggle on" type="button" aria-label="Falar respostas automaticamente" aria-pressed="true"><span></span></button></div>
+      <div class="form-field"><label for="voice-mode">Reprodução</label><select id="voice-mode"><option value="natural">Voz natural online</option><option value="device">Voz do dispositivo</option></select></div>
+      <p class="field-note">Na voz do dispositivo, o navegador usa uma voz instalada no idioma escolhido.</p>
+      <div class="form-field"><label for="pitch">Tom <output id="pitch-value" for="pitch">-4</output></label><input id="pitch" type="range" min="-10" max="10" value="-4" step="1"></div>
+      <div class="voice-buttons"><button id="test-voice" class="primary-small" type="button"><span aria-hidden="true">▷</span> Testar voz</button><button id="stop-voice" class="secondary-small" type="button">Parar áudio</button></div>
+      <button id="replay" class="replay-button" type="button" disabled>Ouvir última resposta</button>
+      <p class="privacy-note">A voz natural usa internet e envia o texto ao serviço de síntese.</p>
+      <div class="kept-fields" hidden>
+        <input id="volume" type="range" min="50" max="120" value="100" step="5"><output id="volume-value" for="volume">100%</output>
+        <strong id="server-status">verificando</strong><strong id="db-status">verificando</strong><strong id="natural-status">verificando</strong>
+      </div>
+    </div>
+  </dialog>
+  <audio id="audio" preload="none"></audio>
+  <script src="/speech.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

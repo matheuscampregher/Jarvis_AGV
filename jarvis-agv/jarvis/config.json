@@ -1,0 +1,14 @@
+{
+  "google_sheets": {
+    "mode": "public",
+    "spreadsheet_id": "1DwHguCj2RcNHXCmfQSdNKFcDM8aw8F7knYl-wNygZcs",
+    "layout": "horarios",
+    "tabs": {
+      "professores": "Professores",
+      "materias": "Disciplinas",
+      "turmas": "Turmas",
+      "aulas": "Horário DS1"
+    },
+    "cache_seconds": 60
+  }
+}

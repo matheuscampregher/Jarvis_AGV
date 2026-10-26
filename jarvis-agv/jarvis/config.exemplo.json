@@ -1,0 +1,26 @@
+{
+  "google_sheets": {
+    "spreadsheet_id": "1DwHguCj2RcNHXCmfQSdNKFcDM8aw8F7knYl-wNygZcs",
+    "cache_seconds": 60,
+    "layout": "horarios",
+    "tabs": {
+      "professores": "Professores",
+      "materias": "Disciplinas",
+      "turmas": "Turmas",
+      "aulas": "Horário DS1"
+    },
+    "mode": "public"
+  },
+  "palma": {
+    "limiar": 0.35,
+    "limiar_queda": 0.12,
+    "queda_ms": 150,
+    "intervalo_minimo_ms": 150,
+    "intervalo_maximo_ms": 700,
+    "janela_ms": 1500,
+    "espera_apos_acionar_s": 10,
+    "taxa_hz": 16000,
+    "bloco": 256,
+    "dispositivo": null
+  }
+}

@@ -1,0 +1,98 @@
+JARVIS AGV - SEM GOOGLE CLOUD OU CARTAO
+
+COMO USAR
+   1. Extraia este ZIP inteiro em uma NOVA PASTA.
+   2. Execute o Jarvis.py:
+      WINDOWS: de dois cliques em Jarvis.py (ou, no CMD da pasta: py Jarvis.py)
+      TERMUX/LINUX: entre na pasta e rode: python Jarvis.py
+   3. Pronto. Na primeira vez ele mesmo instala o que falta e abre o
+      configurador da planilha. Depois disso, executar o arquivo so inicia.
+
+   E so isso. O resto deste arquivo e para quando algo nao sair como esperado.
+
+NA PRIMEIRA VEZ, O CONFIGURADOR PEDE O MODO DA PLANILHA
+   1 = PELO LINK. Cole o link normal da planilha, ou Enter usa a sua.
+       Exige leitura/download liberados para qualquer pessoa com o link.
+       Nao pede JSON. Nao muda o compartilhamento.
+   2 = ARQUIVO LOCAL. Google > Arquivo > Baixar > Microsoft Excel (.xlsx).
+       Selecione o arquivo baixado. Nao pede link, JSON nem Cloud.
+       Mantem a planilha privada. Atualize baixando outra copia depois.
+   3 = CONTA GOOGLE. Metodo antigo, opcional, com JSON.
+   Mantenha FORMATO 1 e confirme os nomes das quatro abas.
+   O Ollama precisa estar aberto para a IA responder.
+
+ABRIR COM DUAS PALMAS (opcional)
+   Bata duas palmas e o Jarvis abre sozinho no navegador.
+   Para ligar agora: python Jarvis.py palma
+   Para iniciar junto com o Windows, sem janela preta:
+     1. Tecle Windows+R, digite shell:startup e Enter.
+     2. Crie um atalho nessa pasta apontando para:
+        "CAMINHO-DO-PYTHONW" "CAMINHO-DA-PASTA\Jarvis.py" palma
+        O pythonw.exe fica ao lado do python.exe e roda sem console.
+        Exemplo: "C:\Users\voce\AppData\Local\Programs\Python\Python312\pythonw.exe"
+                 "C:\Jarvis AGV\Jarvis.py" palma
+     3. Para desativar, apague esse atalho da pasta shell:startup.
+   Nenhum audio e gravado, salvo ou enviado: o programa so calcula o volume de
+   pedacos curtos do microfone, na memoria, para reconhecer as duas palmas.
+   Se as palmas nao funcionarem, ajuste "palma" no arquivo jarvis/config.json:
+   limiar menor fica mais sensivel, limiar maior fica mais exigente.
+
+FERRAMENTAS AVANCADAS (quem nao e tecnico nao precisa)
+   python Jarvis.py menu    abre o menu com todas as opcoes:
+     1 Instalar ou atualizar       5 Iniciar
+     2 Configurar a planilha       6 Iniciar na rede da escola
+     3 Testar a planilha           7 Ligar com palma
+     4 Testar a voz                8 Gerar executavel
+   Atalho direto, sem menu:
+     python Jarvis.py [instalar | configurar | testar | voz | iniciar | rede
+                       | palma | exe]
+
+ORGANIZACAO DAS PASTAS
+   Jarvis.py     O unico arquivo que voce executa. Windows e Termux.
+   jarvis/       Todo o resto:
+                 codigo Python (servidor, planilha, horarios, voz, palma),
+                 web/ (interface no navegador), docs/ (guias),
+                 tests/ (testes automaticos), requirements.txt,
+                 config.exemplo.json.
+   Criados durante o uso: jarvis/config.json, jarvis/dados/ (modo 2),
+   jarvis/segredos/ (modo 3).
+   O ambiente Python NAO fica nesta pasta. Ele fica em:
+     Windows: %LOCALAPPDATA%\JarvisAGV\venv
+     Termux/Linux: ~/.local/share/JarvisAGV/venv
+   Assim voce pode mover ou recriar esta pasta sem reinstalar tudo.
+
+SOLUCAO DE PROBLEMAS
+   "Este Python e o X, e o Jarvis precisa do 3.10 ou mais novo"
+     Instale o Python por https://www.python.org/downloads/ e, no Windows,
+     marque "Add python.exe to PATH" durante a instalacao.
+   Nao consegui criar o ambiente Python
+     Termux: pkg install python. Debian/Ubuntu: sudo apt install python3-venv.
+   A voz nao sai
+     Use a opcao 4 (Testar a voz). Ela confere os motores de voz no servico e
+     gera teste-voz.mp3. A voz natural precisa de internet.
+   A planilha nao carrega
+     Use a opcao 3 (Testar a planilha) e corrija a primeira linha apontada.
+   A IA nao responde
+     Abra o Ollama. O modelo e o qwen3:4b-instruct-2507-q4_K_M.
+   Se B14 da aba Horario DS1 continuar vazia, preencha o inicio correto da aula.
+   No modo local, baixe o arquivo novamente depois de corrigir os dados.
+
+SOBRE OS DADOS
+   O Jarvis nunca inventa horario, professor, sala, turma ou data. Sem dado
+   vindo da planilha, ele responde que nao tem a informacao e manda procurar o
+   responsavel.
+   Quem tem o link tambem consegue ler os dados no modo 1.
+   Para dados privados, use modo 2 ou mantenha a conexao autenticada no modo 3.
+   No modo 2, jarvis/dados/grade.xlsx fica no servidor e nao e servido pelo site.
+   Nao distribua as pastas dados nem segredos aos alunos; eles usam o navegador.
+   O pacote nao inclui nenhuma planilha de exemplo: os testes criam a deles
+   em pasta temporaria, e nenhum dado real da escola viaja no ZIP.
+   O modelo Qwen, a logo e a interface foram mantidos.
+
+SE JA USAVA A VERSAO ANTERIOR
+   Copie para esta nova pasta somente: config.json e as pastas dados/ e
+   segredos/ (se existirem), agora DENTRO da pasta jarvis/.
+   Nao copie a pasta .venv: o Jarvis.py cria o ambiente novo sozinho.
+   Os arquivos .bat antigos nao existem mais; tudo passa pelo Jarvis.py.
+   As vozes agora se chamam "Jarvis" e sao todas masculinas. Uma preferencia
+   antiga (Antonio, Francisca, Jenny, Guy) e convertida automaticamente.
